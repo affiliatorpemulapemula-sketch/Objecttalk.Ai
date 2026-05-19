@@ -5,7 +5,29 @@
 <title>Object Talk AI</title>
 
 <style>
+.navbar{
+background:#1b1b1b;
+padding:20px;
+border-radius:15px;
+margin-bottom:30px;
+box-shadow:0 0 20px rgba(0,255,200,0.2);
+}
+#loading{
+margin-top:20px;
+font-size:20px;
+color:#00ffd5;
+font-weight:bold;
+}
+.navbar h2{
+color:#00ffd5;
+margin:0;
+font-size:30px;
+}
 
+.navbar p{
+color:#aaa;
+margin-top:5px;
+}
 body{
 background:#111;
 color:white;
@@ -54,7 +76,13 @@ font-size:20px;
 </head>
 
 <body>
+<div class="navbar">
 
+<h2>ObjectTalk AI</h2>
+
+<p>AI Caption Generator</p>
+
+</div>
 <h1>Object Talk AI</h1>
 
 <input
@@ -88,7 +116,7 @@ Generate
 <button onclick="copyText()">
 Copy
 </button>
-
+<div id="loading"></div>
 <div class="box" id="hasil"></div>
 
 <div class="box" id="prompt"></div>
@@ -98,6 +126,10 @@ Copy
 <script>
 
 function generateText(){
+
+document.getElementById("loading")
+.innerHTML =
+"🤖 AI sedang berpikir...";
 
 let objek =
 document.getElementById("objek").value;
@@ -213,6 +245,9 @@ document.getElementById("videoPrompt")
 .innerHTML =
 "<b>Prompt AI Video:</b><br><br>" +
 promptVideo;
+
+document.getElementById("loading")
+.innerHTML = "";
 
 }
 
