@@ -1,0 +1,2 @@
+# Objecttalk.Ai
+Belajar ai 
