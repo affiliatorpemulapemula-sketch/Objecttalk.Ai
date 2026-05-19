@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Object Talk AI</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:30px;
+text-align:center;
+}
+
+h1{
+font-size:40px;
+color:#00ffd5;
+margin-bottom:30px;
+}
+
+input,select{
+width:80%;
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+button{
+background:#00ffd5;
+color:black;
+padding:15px 30px;
+font-size:20px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+margin:10px;
+}
+
+.box{
+background:#222;
+padding:20px;
+border-radius:15px;
+margin-top:25px;
+line-height:35px;
+font-size:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Object Talk AI</h1>
+
+<input
+id="objek"
+placeholder="Masukkan objek...">
+
+<br>
+
+<select id="mood">
+
+<option value="sedih">
+Sedih
+</option>
+
+<option value="miskin">
+Kehidupan
+</option>
+
+<option value="lucu">
+Lucu
+</option>
+
+</select>
+
+<br>
+
+<button onclick="generateText()">
+Generate
+</button>
+
+<button onclick="copyText()">
+Copy
+</button>
+
+<div class="box" id="hasil"></div>
+
+<div class="box" id="prompt"></div>
+
+<div class="box" id="videoPrompt"></div>
+
+<script>
+
+function generateText(){
+
+let objek =
+document.getElementById("objek").value;
+
+let mood =
+document.getElementById("mood").value;
+
+let hooks = [];
+let endings = [];
+
+if(mood == "sedih"){
+
+hooks = [
+
+"Aku " + objek + "...",
+
+"Tak banyak yang tahu cerita di balik aku...",
+
+"Aku hanya benda... tapi selalu menemani hari berat."
+
+];
+
+endings = [
+
+"Kadang yang paling setia memang jarang diperhatikan.",
+
+"Aku diam... tapi menyimpan banyak cerita.",
+
+"Tidak semua perjuangan bisa diceritakan."
+
+];
+
+}
+
+if(mood == "miskin"){
+
+hooks = [
+
+"Aku " + objek + "... sering jadi saksi perjuangan hidup.",
+
+"Setiap hari aku dipakai dengan hati-hati.",
+
+"Aku tahu rasanya hidup serba pas-pasan."
+
+];
+
+endings = [
+
+"Hidup memang tidak selalu mudah.",
+
+"Kadang orang cuma sedang bertahan hidup.",
+
+"Hidup sederhana bukan berarti menyerah."
+
+];
+
+}
+
+if(mood == "lucu"){
+
+hooks = [
+
+"Aku " + objek + "... sering dicari pas panik.",
+
+"Kalau aku hilang semua langsung ribut.",
+
+"Aku capek lihat drama manusia."
+
+];
+
+endings = [
+
+"Drama manusia memang tidak ada habisnya.",
+
+"Manusia memang unik ya.",
+
+"Tapi besok juga diulang lagi."
+
+];
+
+}
+
+let randomHook =
+Math.floor(Math.random() * hooks.length);
+
+let randomEnding =
+Math.floor(Math.random() * endings.length);
+
+let hasil =
+hooks[randomHook] +
+" " +
+endings[randomEnding];
+
+document.getElementById("hasil")
+.innerHTML =
+"<b>Caption:</b><br><br>" +
+hasil;
+
+let promptImage =
+"Cinematic realistic " + objek +
+", emotional object talk, dramatic lighting, viral TikTok style";
+
+document.getElementById("prompt")
+.innerHTML =
+"<b>Prompt AI Image:</b><br><br>" +
+promptImage;
+
+let promptVideo =
+"Cinematic video of " + objek +
+", emotional object talk scene, realistic lighting";
+
+document.getElementById("videoPrompt")
+.innerHTML =
+"<b>Prompt AI Video:</b><br><br>" +
+promptVideo;
+
+}
+
+function copyText(){
+
+let text =
+document.getElementById("hasil")
+.innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("Berhasil dicopy!");
+
+}
+
+</script>
+
+</body>
+
+</html>
